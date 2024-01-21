@@ -10,7 +10,6 @@ import os, sys
 from dotenv import load_dotenv
 
 BASE_DIR = os.path.dirname(os.path.dirname(pathlib.Path(__file__).resolve().parents[1]))
-print(os.path.join(BASE_DIR, ".env"))
 load_dotenv(os.path.join(BASE_DIR, ".env"))
 sys.path.append(BASE_DIR)
 
@@ -47,8 +46,6 @@ from app.models.domains.chat_messages import ChatMessages
 from app.models.domains.papers import Papers
 from app.db.database import Base
 target_metadata = Base.metadata
-
-print(target_metadata)
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:

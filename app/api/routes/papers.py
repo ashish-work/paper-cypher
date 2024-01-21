@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Body, Depends, HTTPException
+from fastapi import APIRouter, Body, Depends, HTTPException, UploadFile
 from starlette.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
 from app.api.dependencies.database import get_repository
 from app.db.repositories.papers import PapersRepository
@@ -16,7 +16,7 @@ router = APIRouter()
         name="paper:embed_paper"
 )
 async def embed_pdf(
-    paper_request: PaperRequest = Body(..., embed=True),
+    paper_file: UploadFile,
     paper_repo: PapersRepository = Depends(get_repository(PapersRepository))
 ) -> PaperInResponse:
     """
@@ -34,7 +34,8 @@ async def embed_pdf(
     # parse pdf 
     # create embedding
     # store 
-    paper_exists:bool = await check_paper_exists(paper_repo, paper_request.title)
+    paper_name:str = paper_file.filename
+    paper_exists:bool = await check_paper_exists(paper_repo, paper_name)
     if paper_exists:
         raise HTTPException(
             status_code=HTTP_400_BAD_REQUEST,
@@ -43,6 +44,6 @@ async def embed_pdf(
 
     return PaperInResponse(
         id=1,
-        title=paper_request.title,
+        title=paper_name,
         url="test"
     )

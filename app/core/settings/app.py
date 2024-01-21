@@ -34,6 +34,8 @@ class AppSettings(BaseAppSettings):
     logging_level: int = logging.INFO
     loggers: Tuple[str, str] = ("uvicorn.asgi", "uvicorn.access")
 
+    llm_api_key: SecretStr
+
     class Config:
         validate_assignment = True
 
