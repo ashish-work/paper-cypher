@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer
+from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 from app.db.database import Base
 from app.models.common import DateTimeModelMixin
@@ -12,7 +12,8 @@ class Embeddings(Base, DateTimeModelMixin):
     id = Column(Integer, primary_key=True, autoincrement=True)
     paper_id = Column(Integer, ForeignKey('papers.id'))
     chunk_number = Column(Integer)
-    vector = Column(Vector(1600))
+    content = Column(String)
+    vector = Column(Vector(4096))
 
-    paper = relationship("Papers", back_populates="embeddings")
+    paper = relationship("Paper", back_populates="embeddings")
 

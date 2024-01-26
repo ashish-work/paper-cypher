@@ -8,7 +8,7 @@ from app.models.common import DateTimeModelMixin
 from app.models.domains.embeddings import Embeddings
 
 
-class Papers(Base, DateTimeModelMixin):
+class Paper(Base, DateTimeModelMixin):
     __tablename__ = "papers"
 
     id = Column(Integer, primary_key=True, autoincrement=True)

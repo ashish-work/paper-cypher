@@ -43,7 +43,7 @@ from app.models.domains.users import Users
 from app.models.domains.chats import Chats
 from app.models.domains.embeddings import Embeddings
 from app.models.domains.chat_messages import ChatMessages
-from app.models.domains.papers import Papers
+from app.models.domains.papers import Paper
 from app.db.database import Base
 target_metadata = Base.metadata
 
